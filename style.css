@@ -897,6 +897,57 @@ body.dark .fa-sun {
     }
 }
 
+/* --- إظهار زر المنيو على الموبايل بتصميم احترافي --- */
+
+@media (max-width: 1070px) {
+    /* تنسيق الزرار نفسه */
+    .menu-btn {
+        display: block !important; /* إجبار الظهور */
+        position: relative;
+        width: 40px;
+        height: 30px;
+        cursor: pointer;
+        z-index: 10001;
+        transition: 0.3s;
+    }
+
+    /* رسم الشرطة اللي في النص */
+    .menu-btn::before,
+    .menu-btn::after,
+    .menu-btn span {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 3px;
+        background: #4070f4; /* لون المنيو أزرق */
+        left: 0;
+        transition: 0.3s;
+    }
+
+    /* الشرطة اللي فوق */
+    .menu-btn::before { top: 0; }
+    /* الشرطة اللي في النص */
+    .menu-btn span { top: 12px; }
+    /* الشرطة اللي تحت */
+    .menu-btn::after { top: 24px; }
+
+    /* لما الموقع يكون ليل.. خلي لون المنيو أبيض عشان تبان */
+    body.dark .menu-btn::before,
+    body.dark .menu-btn::after,
+    body.dark .menu-btn span {
+        background: #fff;
+    }
+
+    /* تأثير الـ X لما المنيو تفتح */
+    .menu-btn.active span { opacity: 0; }
+    .menu-btn.active::before {
+        transform: translateY(12px) rotate(45deg);
+    }
+    .menu-btn.active::after {
+        transform: translateY(-12px) rotate(-45deg);
+    }
+}
+
 
 
 

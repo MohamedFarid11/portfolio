@@ -947,6 +947,34 @@ body.dark .fa-sun {
         transform: translateY(-12px) rotate(-45deg);
     }
 }
+@media (max-width: 1070px) {
+    /* 1. إظهار زر الإغلاق (X) لما المنيو تفتح */
+    .menu-btn.active {
+        background: url("https://img.icons8.com/ios-filled/50/4070f4/multiply.png") no-repeat !important;
+        background-size: 25px !important;
+        background-position: center !important;
+        position: fixed; /* يفضل ثابت في مكانه */
+        right: 30px;
+        top: 25px;
+        z-index: 10002; /* أعلى من المنيو نفسها */
+    }
+
+    /* 2. إبعاد أيقونة الدارك مود عن المنيو عشان ما يلزقوش في بعض */
+    body.dark .fa-sun, .fa-moon {
+        right: 80px !important; /* حركناه للشمال شوية عشان يسيب مساحة للمنيو */
+        transition: 0.3s;
+    }
+
+    /* 3. تظبيط شكل القائمة نفسها في الموبايل */
+    .navigation {
+        padding-top: 50px; /* عشان اللينكات ما تبدأش من سقف الشاشة */
+    }
+
+    .navigation a {
+        font-weight: 600;
+        letter-spacing: 1px;
+    }
+}
 
 
 

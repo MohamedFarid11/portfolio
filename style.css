@@ -831,120 +831,114 @@ body.dark .fa-sun {
 }
 
 
-/* --- تعديلات الموبايل فقط (Mobile Only) --- */
 @media (max-width: 1070px) {
-    /* الزرار الدائري المتحرك */
-    .menu-btn {
-        display: flex !important;
-        position: fixed;
-        right: 20px;
-        top: 20px;
-        width: 50px;
-        height: 50px;
-        background: linear-gradient(135deg, #4070f4, #2948ff);
-        border-radius: 50%;
-        justify-content: center;
-        align-items: center;
-        z-index: 10005 !important;
-        cursor: pointer;
-        box-shadow: 0 8px 25px rgba(64, 112, 244, 0.4);
-        transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    /* 1. تنظيف الهيدر واللوجو */
+    header {
+        padding: 10px 20px !important;
+        background: transparent !important;
+        overflow: visible !important;
+    }
+    header .brand {
+        display: none !important; /* إخفاء اللوجو تماماً في الموبايل لمنع التداخل */
     }
 
-    /* شكل الشرطات البيضاء */
+    /* 2. زرار المنيو (المربع الأزرق الصغير) */
+    .menu-btn {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+        z-index: 10005 !important;
+        background: #4070f4;
+        border-radius: 12px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    }
+
     .menu-btn span, .menu-btn::before, .menu-btn::after {
         content: "";
         position: absolute;
         width: 22px;
         height: 2px;
         background: #fff;
-        transition: 0.4s;
+        transition: 0.3s ease;
     }
     .menu-btn::before { transform: translateY(-8px); }
     .menu-btn::after { transform: translateY(8px); }
 
-    /* التحول لعلامة X عند الضغط */
-    .menu-btn.active { 
-        background: #ff4757; 
-        box-shadow: 0 8px 25px rgba(255, 71, 87, 0.4); 
-    }
+    /* تحول الزرار لـ X أحمر عند الفتح */
+    .menu-btn.active { background: #ff4757; }
     .menu-btn.active span { opacity: 0; }
     .menu-btn.active::before { transform: rotate(45deg); }
     .menu-btn.active::after { transform: rotate(-45deg); }
 
-    /* القائمة الشفافة (تأثير الزجاج) */
+    /* 3. الدارك مود (تحريكه بعيداً عن المنيو لليسار) */
+    .fa-moon, .fa-sun {
+        position: fixed !important;
+        top: 25px !important;
+        right: 85px !important; /* مسافة كافية لمنع التداخل */
+        z-index: 10004 !important;
+        font-size: 1.2rem !important;
+        color: #4070f4 !important;
+    }
+
+    /* 4. القائمة الجانبية (Side Menu) - رقيقة وشفافة */
     .navigation {
-        display: flex !important;
         position: fixed;
-        top: -100%; /* مخفية فوق */
-        left: 0;
-        width: 100%;
+        top: 0;
+        right: -100%; /* مستخبية برا الشاشة على اليمين */
+        width: 250px; /* عرض صغير وشيك */
         height: 100vh;
-        background: rgba(255, 255, 255, 0.85);
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(25px); /* تأثير زجاجي قوي */
+        -webkit-backdrop-filter: blur(25px);
+        display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        gap: 20px;
         z-index: 10003;
-        transition: all 0.6s cubic-bezier(0.85, 0, 0.15, 1);
-        visibility: hidden;
+        transition: 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+        border-left: 1px solid rgba(255, 255, 255, 0.2);
     }
 
     .navigation.active {
-        top: 0;
-        visibility: visible;
+        right: 0; /* تظهر من الجنب اليمين */
     }
 
-    /* أنميشين ظهور اللينكات واحد ورا التاني */
+    /* 5. اللينكات (الأسماء) - ضمان الظهور التام */
     .navigation a {
-        font-size: 2rem !important;
-        margin: 15px 0 !important;
-        color: #111 !important;
-        font-weight: 700;
-        transform: translateY(50px);
-        opacity: 0;
-        transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        display: block !important;
+        width: 80%;
+        padding: 15px !important;
+        font-size: 1.2rem !important;
+        color: #111 !important; /* لون أسود عشان يبان على الشفاف الأبيض */
+        font-weight: 700 !important;
+        text-align: center;
+        text-decoration: none !important;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 15px;
+        transition: 0.3s ease;
+        opacity: 1 !important; /* نضمن إنها ظاهرة */
+        transform: none !important;
+        visibility: visible !important;
     }
 
-    .navigation.active a {
-        transform: translateY(0);
-        opacity: 1;
+    /* وضع الليل للمنيو */
+    body.dark .navigation {
+        background: rgba(7, 7, 28, 0.85);
+    }
+    body.dark .navigation a {
+        color: #fff !important;
+        background: rgba(255, 255, 255, 0.05);
     }
 
-    /* ترتيب الظهور (Staggered) */
-    .navigation.active a:nth-child(1) { transition-delay: 0.1s; }
-    .navigation.active a:nth-child(2) { transition-delay: 0.2s; }
-    .navigation.active a:nth-child(3) { transition-delay: 0.3s; }
-    .navigation.active a:nth-child(4) { transition-delay: 0.4s; }
-    .navigation.active a:nth-child(5) { transition-delay: 0.5s; }
-
-    /* توافق الوضع الليلي */
-    body.dark .navigation { background: rgba(7, 7, 28, 0.9); }
-    body.dark .navigation a { color: #fff !important; }
-
-    /* أيقونة الدارك مود بجانب المنيو */
-    .fa-moon, .fa-sun {
-        right: 85px !important;
-        top: 25px !important;
-        position: fixed !important;
-        z-index: 10004 !important;
+    /* تظبيط سكشن الهوم */
+    .main .content {
+        padding-top: 100px !important;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

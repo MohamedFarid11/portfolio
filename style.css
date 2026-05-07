@@ -829,3 +829,92 @@ body.dark p, body.dark .paragraph-text {
 body.dark .fa-sun {
     color: #ffbd39 !important;
 }
+
+
+/* --- تظبيط الموقع للموبايل (Mobile Responsiveness) --- */
+
+@media (max-width: 1070px) {
+    .navigation {
+        display: none; /* بنخفي القائمة العادية */
+    }
+
+    /* بنخلي القائمة تظهر بشكل جانبي لما تدوس على زرار المنيو */
+    .navigation.active {
+        display: flex;
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 250px;
+        height: 100vh;
+        background: var(--section-bg, #fff);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 999;
+        box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+    }
+
+    .menu-btn {
+        display: block; /* بنظهر زرار المنيو */
+        z-index: 1000;
+    }
+}
+
+@media (max-width: 768px) {
+    .main h2 {
+        font-size: 2.5rem; /* تصغير عنوان الهوم */
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .content {
+        flex-direction: column; /* بنخلي العناصر تحت بعضها */
+    }
+
+    .column {
+        width: 100% !important;
+        margin-bottom: 30px;
+    }
+
+    .card {
+        width: 100% !important; /* الكروت تاخد العرض كله */
+        margin: 10px 0;
+    }
+
+    .contact-form {
+        width: 100% !important;
+    }
+
+    header {
+        padding: 10px 20px; /* تقليل المسافات في الهيدر */
+    }
+
+    /* تظبيط أيقونة المنيو والدارك مود عشان ما يغطوش على بعض */
+    .mode-btn {
+        right: 70px !important; 
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
